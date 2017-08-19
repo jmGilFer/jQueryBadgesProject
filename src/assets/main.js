@@ -7,36 +7,38 @@ $(function () {
       const $badges = $("#badges");
       // completed courses
       if (response.courses.completed.length) {
-        $badges.append("<h2>Completed</h2>");
+        const completedBadges = [];
         response.courses.completed.sort((courseA, courseB) => {
           return courseA.title < courseB.title ? -1 : 1;
         }).map((course) => {
-          $badges.append(`<div class='course' title="${course.title}" alt="${course.title}">
+          completedBadges.push(`<div class='course' title="${course.title}" alt="${course.title}">
             <h3>${course.title}</h3>
             <img src="${course.badge}" />
             <a target="_blank" href="${course.url}" class="btn btn-primary" title="${course.title}" alt="${course.title}">See Course</a>
           </div>`);
         });
+        $badges.append(`<h2>Completed</h2>${completedBadges}`);
       }
       // completed courses
       if (response.courses.in_progress.length) {
-        $badges.append("<h2>In progress</h2>");
+        const inProgressBadges = [];
         response.courses.in_progress.sort((courseA, courseB) => {
           return courseA.title < courseB.title ? -1 : 1;
         }).map((course) => {
-          $badges.append(`<div class='course' title="${course.title}" alt="${course.title}">
+          inProgressBadges.push(`<div class='course' title="${course.title}" alt="${course.title}">
             <h3>${course.title}</h3>
             <img src="${course.badge}" title="${course.title}" alt="${course.title}"/>
             <a target="_blank" href="${course.url}" class="btn btn-primary">See Course</a>
           </div>`);
         });
+        $badges.append(`<h2>In progress</h2>${inProgressBadges}`);
       }
       // user badges
       if (response.badges.length) {
-        $badges.append("<h2>User badges</h2>");
-        $badges.append(`<div id='user-badges'></div>`);
+        $badges.append("<h2>User badges</h2><div id='user-badges'></div>");
         const $userBadges = $badges.find("#user-badges");
         const badgeGroup = [];
+        const userBadges = [];
         response.badges.sort((badgeA, badgeB) => {
           return !badgeA.course_url ? 1 : !badgeB.course_url ? -1 :
             badgeA.course_url < badgeB.course_url ? -1 : 1;
@@ -51,12 +53,10 @@ $(function () {
             <p>${badge.name}</p>
           </div>
           ${badge.course_url ? `</a>` : ""}`);
-          if (badge.course_url) {
-            $newEl.append()
-          }
-          $userBadges.append($newEl);
-
+          userBadges.push($newEl);
         });
+        $userBadges.append(userBadges);
+        
       }
     }
   });
