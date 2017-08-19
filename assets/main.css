@@ -33,6 +33,12 @@ body {
   margin-bottom: 20px;
   max-width: 100%;
   width: 150px;
+  transition-duration: .5s;
+  transition-property: transform;
+}
+
+.course:hover > img {
+  transform: scale(1.1);
 }
 
 .course a {
@@ -51,20 +57,30 @@ body {
   width: 100%;
 }
 
-.user-badge, .linked-badge{
+.user-badge {
+  padding-top: 5px;
+  margin: 5px 0;
+}
+
+:not(.linked-badge) .user-badge, .linked-badge{
   float: left;
   width: 5%;
   min-width: 55px;
   box-sizing: border-box;
-  margin: 5px 0;
   overflow: hidden;
+}
+
+:not(.linked-badge) > .user-badge:hover, .linked-badge:hover{
+  transform: scale(1.5);
+  overflow: visible;
+  transition-duration: .5s;
+  transition-property: transform;
 }
 
 .linked-badge .user-badge{
   width: 100%;
   height: 100%;
-  padding: 0;
-  margin: 0;
+  box-sizing: border-box;
 }
 
 .user-badge img{
