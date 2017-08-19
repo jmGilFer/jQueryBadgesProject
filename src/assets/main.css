@@ -1,6 +1,6 @@
 
 body {
-  font-family: 'Helvetica Neue', serif;
+  font-family: 'Helvetica Neue', sans-serif;
   font-size: 18px;
 }
 
@@ -51,9 +51,20 @@ body {
   width: 100%;
 }
 
-.user-badge{
+.user-badge, .linked-badge{
   float: left;
-  width: 60px;
+  width: 5%;
+  min-width: 55px;
+  box-sizing: border-box;
+  margin: 5px 0;
+  overflow: hidden;
+}
+
+.linked-badge .user-badge{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .user-badge img{
@@ -67,4 +78,45 @@ body {
   font-weight: 200;
   min-height: 80px;
   padding: 2px;
+  text-shadow: 1px black;
+  word-break: break-all;
 }
+
+h1, h2 {
+  text-align: center;
+  color: #999;
+  font-weight: 200;
+}
+
+.group-0 {
+  background: #D47272;
+}
+
+.group-1 {
+  background: #D5FFE3;
+}
+
+.group-2 {
+  background: #3E3958;
+}
+
+.group-3 {
+  background: #FBFF87;
+}
+
+.group-4 {
+  background: #FFCFF5;
+}
+
+.group-5 {
+  background: #79D2E0;
+}
+
+.group-6 {
+  background: #D7DADB;
+}
+
+.group-7 {
+  background: #4E3737;
+}
+
