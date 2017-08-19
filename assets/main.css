@@ -38,3 +38,33 @@ body {
 .course a {
   display: block;
 }
+
+#user-badges {
+  background: #F5F5F5;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 5px #EAEAEA;
+  display: inline-block;
+  height: auto;
+  margin: 20px 10px;
+  padding: 15px 10px;
+  width: 100%;
+}
+
+.user-badge{
+  float: left;
+  width: 60px;
+}
+
+.user-badge img{
+  width: 30px;
+  height: auto;
+}
+
+.user-badge p{
+  color: #999;
+  font-size: 0.9rem;
+  font-weight: 200;
+  min-height: 80px;
+  padding: 2px;
+}
