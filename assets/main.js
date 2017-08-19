@@ -17,7 +17,7 @@ $(function () {
             <a target="_blank" href="${course.url}" class="btn btn-primary" title="${course.title}" alt="${course.title}">See Course</a>
           </div>`);
         });
-        $badges.append(`<h2>Completed</h2>${completedBadges}`);
+        $badges.append(`<h2>Completed</h2>${completedBadges.join('')}`);
       }
       // completed courses
       if (response.courses.in_progress.length) {
@@ -31,7 +31,7 @@ $(function () {
             <a target="_blank" href="${course.url}" class="btn btn-primary">See Course</a>
           </div>`);
         });
-        $badges.append(`<h2>In progress</h2>${inProgressBadges}`);
+        $badges.append(`<h2>In progress</h2>${inProgressBadges.join('')}`);
       }
       // user badges
       if (response.badges.length) {
