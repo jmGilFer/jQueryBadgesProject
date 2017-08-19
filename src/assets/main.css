@@ -60,6 +60,7 @@ body {
 .user-badge {
   padding-top: 5px;
   margin: 5px 0;
+  transform: translate3d(0,0,0);
 }
 
 :not(.linked-badge) .user-badge, .linked-badge{
@@ -94,7 +95,6 @@ body {
   font-weight: 200;
   min-height: 80px;
   padding: 2px;
-  text-shadow: 1px black;
   word-break: break-all;
 }
 
