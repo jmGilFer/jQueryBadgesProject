@@ -40,7 +40,7 @@ $(function () {
           return badgeA.name < badgeB.name ? -1 : 1;
         }).map((badge) => {
           $userBadges.append(`<div class='user-badge' title="${badge.name}" alt="${badge.name}">
-            <img src="${badge.badge}" />
+            <img src="${badge.badge}" title="${badge.name}" alt="${badge.name}" />
             <p>${badge.name}</p>
           </div>`);
         });
