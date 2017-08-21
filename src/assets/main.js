@@ -33,30 +33,61 @@ $(function () {
         });
         $badges.append(`<h2>In progress</h2>${inProgressBadges.join('')}`);
       }
-      // user badges
       if (response.badges.length) {
-        $badges.append("<h2>User badges</h2><div id='user-badges'></div>");
-        const $userBadges = $badges.find("#user-badges");
-        const badgeGroup = [];
-        const userBadges = [];
-        response.badges.sort((badgeA, badgeB) => {
-          return !badgeA.course_url ? 1 : !badgeB.course_url ? -1 :
-            badgeA.course_url < badgeB.course_url ? -1 : 1;
-        }).map((badge) => {
-          if (!badgeGroup[badge.course_url]) {
-            badgeGroup[badge.course_url] = randomHSL();
-          }
-          let groupColor = badgeGroup[badge.course_url];
-          const $newEl = $(`${badge.course_url ? `<a class="linked-badge" href=${badge.course_url}>` : ""}
-          <div style="background:${groupColor.bg}; border: 1px solid ${groupColor.border}" class='user-badge ${badge.course_url ? `badge-group` : ""}' title="${badge.name}" alt="${badge.name}">
-            <img src="${badge.badge}" title="${badge.name}" alt="${badge.name}" />
-            <p>${badge.name}</p>
-          </div>
-          ${badge.course_url ? `</a>` : ""}`);
-          userBadges.push($newEl);
+        const progress = response.badges.filter((badge) => {
+          return badge.course_url != null && badge.course_url != "";
         });
-        $userBadges.append(userBadges);
-        
+        const userbadges = response.badges.filter((badge) => {
+          return badge.course_url == null || badge.course_url == "";
+        });
+        //progress
+        if (progress.length) {
+          $badges.append("<h2>Progress</h2><div id='progress-badges'></div>");
+          const $progressBadges = $badges.find("#progress-badges");
+          const badgeGroup = [];
+          const progressBadges = [];
+          progress.sort((badgeA, badgeB) => {
+            return badgeA.course_url < badgeB.course_url ? -1 : 1;
+          }).map((badge) => {
+            if (!badgeGroup[badge.course_url]) {
+              badgeGroup[badge.course_url] = randomHSL();
+            }
+            let groupColor = badgeGroup[badge.course_url];
+            const $newEl = $(`${badge.course_url ? `<a class="linked-badge" href=${badge.course_url}>` : ""}
+            <div style="background:${groupColor.bg}; border: 1px solid ${groupColor.border}" class='user-badge ${badge.course_url ? `badge-group` : ""}' title="${badge.name}" alt="${badge.name}">
+              <img src="${badge.badge}" title="${badge.name}" alt="${badge.name}" />
+              <p>${badge.name}</p>
+            </div>
+            ${badge.course_url ? `</a>` : ""}`);
+            progressBadges.push($newEl);
+          });
+          $progressBadges.append(progressBadges);
+          
+        }
+        // user badges
+        if (userbadges.length) {
+          $badges.append("<h2>User badges</h2><div id='user-badges'></div>");
+          const $userBadges = $badges.find("#user-badges");
+          const badgeGroup = [];
+          const userBadges = [];
+          userbadges.sort((badgeA, badgeB) => {
+            return badgeA.course_url < badgeB.course_url ? -1 : 1;
+          }).map((badge) => {
+            if (!badgeGroup[badge.course_url]) {
+              badgeGroup[badge.course_url] = randomHSL();
+            }
+            let groupColor = badgeGroup[badge.course_url];
+            const $newEl = $(`${badge.course_url ? `<a class="linked-badge" href=${badge.course_url}>` : ""}
+            <div style="background:${groupColor.bg}; border: 1px solid ${groupColor.border}" class='user-badge ${badge.course_url ? `badge-group` : ""}' title="${badge.name}" alt="${badge.name}">
+              <img src="${badge.badge}" title="${badge.name}" alt="${badge.name}" />
+              <p>${badge.name}</p>
+            </div>
+            ${badge.course_url ? `</a>` : ""}`);
+            userBadges.push($newEl);
+          });
+          $userBadges.append(userBadges);
+          
+        }
       }
     }
   });
